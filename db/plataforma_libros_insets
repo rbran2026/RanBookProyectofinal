@@ -1,0 +1,36 @@
+use plataforma_libros_db_in5bv;
+
+INSERT INTO usuarios (nombre, email, password, rol, institucion, ciudad, telefono) VALUES
+('Administrador Kinal', 'admin@kinal.edu.gt', '$2b$10$3V9sZ3...hash_ejemplo_1', 'admin', 'Centro Educativo Técnico Laboral Kinal', 'Guatemala', '55554444'),
+('Carlos Mendoza', 'cmendoza@kinal.edu.gt', '$2b$10$3V9sZ3...hash_ejemplo_2', 'usuario', 'Centro Educativo Técnico Laboral Kinal', 'Guatemala', '41223388'),
+('Ana Sofía Gómez', 'asgomez@usac.edu.gt', '$2b$10$3V9sZ3...hash_ejemplo_3', 'usuario', 'Universidad de San Carlos de Guatemala', 'Guatemala', '33445566'),
+('Luis Fernando Pérez', 'lperez@uvg.edu.gt', '$2b$10$3V9sZ3...hash_ejemplo_4', 'usuario', 'Universidad del Valle de Guatemala', 'Guatemala', '58992211'),
+('María Elena Juárez', 'mjuarez@url.edu.gt', '$2b$10$3V9sZ3...hash_ejemplo_5', 'usuario', 'Universidad Rafael Landívar', 'Quetzaltenango', '42119900');
+
+INSERT INTO categorias (nombre, descripcion) VALUES
+('Matemáticas', 'Libros y guías de álgebra, cálculo, geometría y estadística'),
+('Ciencias Computacionales', 'Programación, desarrollo web, redes y bases de datos'),
+('Física y Química', 'Textos de física fundamental, química orgánica e inorgánica'),
+('Literatura y Comunicación', 'Novelas literarias, ortografía, redacción y gramática'),
+('Idiomas', 'Guías de aprendizaje para inglés, francés y otros idiomas');
+
+INSERT INTO materiales (usuario_id, categoria_id, titulo, autor, estado_conservacion, tipo_intercambio, disponible) VALUES
+(2, 1, 'Cálculo de una variable (7ma Ed.)', 'James Stewart', 'Buen Estado', 'Intercambio', TRUE),
+(3, 2, 'Clean Code: A Handbook of Agile Software Craftsmanship', 'Robert C. Martin', 'Nuevo', 'Préstamo', TRUE),
+(4, 3, 'Física Universitaria Vol. 1', 'Sears y Zemansky', 'Usado Aceptable', 'Donación', TRUE),
+(5, 4, 'Cien años de soledad', 'Gabriel García Márquez', 'Buen Estado', 'Intercambio', TRUE),
+(2, 5, 'English Grammar in Use (With Answers)', 'Raymond Murphy', 'Nuevo', 'Donación', TRUE);
+
+INSERT INTO solicitudes (material_id, solicitante_id, estado) VALUES
+(1, 3, 'Pendiente'),
+(2, 5, 'Aceptada'),
+(3, 2, 'Completada'),
+(4, 3, 'Rechazada'),
+(5, 4, 'Pendiente');
+
+INSERT INTO auditoria_sistema (usuario_id, accion) VALUES
+(1, 'El administrador inició sesión en el sistema.'),
+(2, 'El usuario registró un nuevo material: Cálculo de una variable.'),
+(3, 'El usuario envió una solicitud de intercambio para el material ID 1.'),
+(5, 'El usuario actualizó su perfil institucional.'),
+(4, 'El usuario cerró sesión en la plataforma.');

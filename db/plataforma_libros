@@ -1,0 +1,57 @@
+CREATE DATABASE IF NOT EXISTS plataforma_libros_db_in5bv CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE plataforma_libros_db_in5bv;
+
+-- 1. Tabla de Usuarios (Soporta roles: 'admin', 'usuario')
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('admin', 'usuario') DEFAULT 'usuario' NOT NULL,
+    institucion VARCHAR(150),
+    ciudad VARCHAR(100) NOT NULL,
+    telefono VARCHAR(20),
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 2. Tabla de Categorías (Entidad de negocio adicional para normalización)
+CREATE TABLE categorias (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL UNIQUE,
+    descripcion TEXT
+);
+
+-- 3. Tabla de Materiales / Libros
+CREATE TABLE materiales (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    categoria_id INT NOT NULL,
+    titulo VARCHAR(150) NOT NULL,
+    autor VARCHAR(100),
+    estado_conservacion ENUM('Nuevo', 'Buen Estado', 'Usado Aceptable') NOT NULL,
+    tipo_intercambio ENUM('Donación', 'Intercambio', 'Préstamo') NOT NULL,
+    disponible BOOLEAN DEFAULT TRUE,
+    creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE,
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id) ON DELETE RESTRICT
+);
+
+-- 4. Tabla de Solicitudes (Proceso transaccional principal)
+CREATE TABLE solicitudes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    material_id INT NOT NULL,
+    solicitante_id INT NOT NULL,
+    estado ENUM('Pendiente', 'Aceptada', 'Rechazada', 'Completada') DEFAULT 'Pendiente',
+    fecha_solicitud TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (material_id) REFERENCES materiales(id) ON DELETE CASCADE,
+    FOREIGN KEY (solicitante_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
+-- 5. Tabla de Auditoría / Logs (Suma la 5ta entidad de negocio)
+CREATE TABLE auditoria_sistema (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT,
+    accion VARCHAR(255) NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE SET NULL
+);
