@@ -10,7 +10,31 @@ al inicio de cada ciclo académico.</P>
 
             <ul class="login-brand-features">
                 <li>/ Encuentas todo tipo de libros y útiles escolares</li>
+                <li>/ Precios accesibles y competitivos</li>
+                <li>/ Entrega a domicilio</li>
             </ul>
          </div>
+
+         <!-- Panel de formulario -->
+        <div class="login-form-panel">
+            <h2 class="login-form-title">Acceso al Intercambio</h2>
+            <p class="login-form-subtitle">Inciar seción en su bcuenta de intercambios</p>
+
+            <form class="login-form">
+                <label class="login-label">Usuario o correo</label>
+<input type="text" placeholder="nombre@fortiotech.com" [(ngModel)]="email" name="email">
+
+                <label class="login-label">Contraseña</label>
+                <input type="password" placeholder="********" [(ngModel)]="password" name="password">
+
+                <button class="login-button" (click)="login()">Iniciar sesión</button>
+            </form>
+
+            <dive class="login-links">
+                <span class="login-links-sep">•</span>
+                <a routerLink="/registro">Crear cuenta</a>
+            </dive>
+        </div>
+        
     </div>
 </div>
