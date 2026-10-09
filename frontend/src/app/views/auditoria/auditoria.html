@@ -1,0 +1,32 @@
+<div class="container-fluid p-4">
+  <div class="mb-4">
+    <h2>Registro de Auditoría</h2>
+    <p class="text-muted">Historial de actividades y movimientos dentro del sistema</p>
+  </div>
+
+  <!-- Listado en tabla o tarjetas -->
+  <div *ngIf="cargando" class="text-center my-5">
+    <p>Cargando registros de auditoría...</p>
+  </div>
+
+  <div *ngIf="!cargando" class="table-responsive bg-white p-3 shadow-sm rounded">
+    <table class="table table-hover align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Acción / Descripción</th>
+          <th>Usuario ID</th>
+          <th>Fecha</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of auditorias">
+          <td>{{ item.id }}</td>
+          <td>{{ item.accion || item.detalles }}</td>
+          <td>{{ item.usuario_id }}</td>
+          <td>{{ item.fecha || 'N/A' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

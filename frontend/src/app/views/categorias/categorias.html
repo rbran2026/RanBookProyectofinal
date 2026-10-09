@@ -1,0 +1,36 @@
+<div class="container-fluid p-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2>Categorías de Materiales</h2>
+      <p class="text-muted">Organiza los recursos educativos por categorías</p>
+    </div>
+    <button class="btn btn-success fw-bold" (click)="mostrarFormulario = !mostrarFormulario">
+      + Nueva Categoría
+    </button>
+  </div>
+
+  <!-- Formulario desplegable -->
+  <div *ngIf="mostrarFormulario" class="card p-4 mb-4 shadow-sm bg-light">
+    <h4>Añadir Categoría</h4>
+    <div class="mb-3">
+      <label class="form-label">Nombre de la Categoría</label>
+      <input type="text" class="form-control" [(ngModel)]="nuevo.nombre" placeholder="Ej: Ciencia, Tecnología, Literatura">
+    </div>
+    <button class="btn btn-primary" (click)="guardarCategoria()">Guardar Categoría</button>
+  </div>
+
+  <!-- Listado -->
+  <div *ngIf="cargando" class="text-center my-5">
+    <p>Cargando categorías...</p>
+  </div>
+
+  <div *ngIf="!cargando" class="row">
+    <div class="col-md-3 mb-4" *ngFor="let item of categorias">
+      <div class="card shadow-sm h-100 text-center p-3">
+        <div class="card-body">
+          <h5 class="card-title text-primary fw-bold">{{ item.nombre }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

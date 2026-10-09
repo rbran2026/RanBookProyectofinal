@@ -1,0 +1,27 @@
+<div class="layout-container">
+  <nav class="sidebar">
+    <div class="sidebar-brand">
+      <img src="assets/logo.svg" alt="RanBook" class="nav-logo">
+      <span>RANBOOK</span>
+    </div>
+    
+    <ul class="nav-menu">
+      <li><a routerLink="/materiales" routerLinkActive="active">📚 Materiales</a></li>
+      <li><a routerLink="/solicitudes" routerLinkActive="active">🔄 Solicitudes</a></li>
+      <li><a routerLink="/categorias" routerLinkActive="active">🏷️ Categorías</a></li>
+      <li *ngIf="usuario?.rol === 'admin'"><a routerLink="/auditoria" routerLinkActive="active">🛡️ Auditoría</a></li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <div class="user-info">
+        <p class="user-name">{{ usuario?.nombre || 'Usuario' }}</p>
+        <p class="user-role">{{ usuario?.rol | uppercase }}</p>
+      </div>
+      <button (click)="logout()" class="btn-logout">Cerrar Sesión</button>
+    </div>
+  </nav>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,12 @@
+.registro-container { display: flex; justify-content: center; align-items: center; min-height: 100vh; background: linear-gradient(135deg, #0F172A 0%, #1E3A8A 100%); padding: 20px; font-family: 'Segoe UI', sans-serif; }
+.registro-card { background: white; padding: 30px; border-radius: 16px; width: 100%; max-width: 480px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+.registro-card h2 { color: #1E3A8A; margin-bottom: 5px; font-weight: 800; text-align: center; }
+.registro-card p { color: #64748B; font-size: 13px; text-align: center; margin-bottom: 20px; }
+.form-group { margin-bottom: 12px; text-align: left; }
+.form-group label { display: block; font-size: 12px; font-weight: 700; color: #334155; margin-bottom: 4px; }
+.form-control { width: 100%; padding: 10px; border: 1px solid #CBD5E1; border-radius: 6px; box-sizing: border-box; }
+.btn-primary { width: 100%; padding: 12px; background: #0D9488; color: white; border: none; border-radius: 6px; font-weight: 700; cursor: pointer; margin-top: 10px; }
+.alert-error { background: #FEE2E2; color: #DC2626; padding: 8px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; }
+.alert-success { background: #ECFDF5; color: #059669; padding: 8px; border-radius: 6px; font-size: 12px; margin-bottom: 10px; }
+.footer-link { text-align: center; margin-top: 15px; font-size: 13px; }
+.footer-link a { color: #0D9488; font-weight: 700; text-decoration: none; }

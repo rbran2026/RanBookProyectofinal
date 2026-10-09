@@ -1,0 +1,46 @@
+<div class="container-fluid p-4">
+  
+  <!-- Tu botón de añadir que ya teníamos -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Catálogo de Libros y Materiales</h2>
+    <button class="btn btn-success fw-bold" (click)="mostrarFormulario = !mostrarFormulario">
+      + Añadir Nuevo Material
+    </button>
+  </div>
+
+  <!-- FORMULARIO PARA NUEVO MATERIAL (Aparece al dar clic en el botón) -->
+  <div *ngIf="mostrarFormulario" class="card p-4 mb-4 shadow-sm bg-light">
+    <h4>Registrar Nuevo Material</h4>
+    <div class="mb-3">
+      <label class="form-label">Título / Nombre</label>
+      <input type="text" class="form-control" [(ngModel)]="nuevo.titulo" placeholder="Ej: Libro de Matemáticas">
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Descripción</label>
+      <textarea class="form-control" [(ngModel)]="nuevo.descripcion" placeholder="Detalles del material..."></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Estado</label>
+      <input type="text" class="form-control" [(ngModel)]="nuevo.estado" placeholder="Ej: Disponible">
+    </div>
+    <button class="btn btn-primary" (click)="guardarMaterial()">Guardar en la Base de Datos</button>
+  </div>
+
+  <!-- Tu listado de materiales que ya funciona -->
+  <div *ngIf="cargando" class="text-center my-5">
+    <p>Cargando materiales...</p>
+  </div>
+
+  <div *ngIf="!cargando" class="row">
+    <div class="col-md-4 mb-4" *ngFor="let item of materiales">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-primary fw-bold">{{ item.titulo || item.nombre }}</h5>
+          <p class="card-text text-secondary">{{ item.descripcion }}</p>
+          <p><small><strong>Estado:</strong> {{ item.estado }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
